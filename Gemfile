@@ -6,9 +6,8 @@ gem "activerecord"
 gem "sinatra-activerecord"
 gem 'kaminari', :require => 'kaminari/sinatra'
 gem 'padrino-helpers'
-gem 'actionview' :require => 'action_view/helpers'
+gem 'actionview'
 gem 'faker'
-gem 'uri'
 
 group :development do
  gem 'sqlite3'

@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 3) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "comments", force: :cascade do |t|
     t.string   "comment",    null: false
     t.integer  "writer_id"
@@ -28,8 +25,8 @@ ActiveRecord::Schema.define(version: 3) do
     t.string   "title",         null: false
     t.string   "link",          null: false
     t.integer  "score"
-    t.integer  "writer_id"
     t.integer  "comment_count"
+    t.integer  "writer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

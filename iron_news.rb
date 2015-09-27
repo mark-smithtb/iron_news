@@ -11,10 +11,7 @@ register Kaminari::Helpers::SinatraHelpers
 
 
 ActiveRecord::Base.establish_connection(
-'adapter' => "postgresql",
-'host' => "localhost",
-'username' => "thad",
-'database' => "IronNews"
+"postgres://gsddktqobhibwr:ryhXYQkhnkYvYZiLxWqjf1rHee@ec2-54-163-228-188.compute-1.amazonaws.com:5432/d2f6h047gag27c"
 )
 
 
@@ -22,7 +19,7 @@ class Writer < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   has_many :stories
   has_many :comments
-  validates :name, presence: true, format: /\A#{URI::regexp}\z/
+  validates :name, presence: true
   validates :email, presence: true, format: VALID_EMAIL_REGEX
 end
 
