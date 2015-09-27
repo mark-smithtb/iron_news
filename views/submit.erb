@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav navbar-default">
+        <span class="nav navbar-brand">Hacker News</span>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#">welcome</a>
+          </li>
+          <li>
+            <a href="/new">new</a>
+          </li>
+          <li>
+            <a href="#">threads</a>
+          </li>
+          <li>
+            <a href="/newcomments">comments</a>
+          </li>
+          <li>
+            <a href="#">show</a>
+          </li>
+          <li>
+            <a href="#">ask</a>
+          </li>
+          <li>
+            <a href="#">jobs</a>
+          </li>
+          <li>
+            <a href="/submit">submit</a>
+          </li>
+        </ul>
+      </div>
+      <form action="/submit" method="POST">
+        Title<input name="title">
+        url<input name="link">
+        Email<input name="email">
+        Name<input name="name">
+        <button class="btn" type="submit">submit</button>
+      </form>
+      <div class="footer"></div>
+    </div>
+  </body>
+</html>

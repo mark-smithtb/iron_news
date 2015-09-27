@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%= url('/main.css') %>" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav navbar-default nav-header">
+        <span class="nav navbar-brand">Hacker News</span>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#">welcome</a>
+          </li>
+          <li>
+            <a href="/new">new</a>
+          </li>
+          <li>
+            <a href="#">threads</a>
+          </li>
+          <li>
+            <a href="/newcomments">comments</a>
+          </li>
+          <li>
+            <a href="#">show</a>
+          </li>
+          <li>
+            <a href="#">ask</a>
+          </li>
+          <li>
+            <a href="#">jobs</a>
+          </li>
+          <li>
+            <a href="/submit">submit</a>
+          </li>
+        </ul>
+      </div>
+      <div class="body">
+        <%@found_story.each do |story| %>
+        <p>
+
+            <a href="<%=story.link%>"><%=story.title%></a>
+            <span class="row"><%=story.score%>
+              points by
+              <%=story.writer.email%>
+              <%=time_ago_in_words(story.created_at)%>
+              ago
+              <a href="comment?id=<%=story.id%>">discuss</a>
+            </span>
+        </p>
+
+          <%@found_comment.each do |comment|%>
+          <p>
+            <%=comment.comment%>
+            <%=comment.writer.email%>
+          </p>
+          <%end%>
+          <%end%>
+          <form action="/comment" method="post">
+            <input name="parent" type="hidden" value="<%=@id%>">
+            <textarea cols="60" name="comment" rows="6"></textarea>
+            <span class="row"><input name="name">name</span>
+            <span class="row"><input name="email">email</span>
+            <button class="btn pull-left" type="submit">comment</button>
+          </form>
+        </div>
+      </div>
+    </body>
+  </html>

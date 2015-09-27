@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%= url('/main.css') %>" rel="stylesheet" type="text/css"/>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav navbar-default nav-header">
+        <span class="nav navbar-brand">Hacker News</span>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="#">welcome</a>
+          </li>
+          <li>
+            <a href="/new">new</a>
+          </li>
+          <li>
+            <a href="#">threads</a>
+          </li>
+          <li>
+            <a href="/newcomments">comments</a>
+          </li>
+          <li>
+            <a href="#">show</a>
+          </li>
+          <li>
+            <a href="#">ask</a>
+          </li>
+          <li>
+            <a href="#">jobs</a>
+          </li>
+          <li>
+            <a href="/submit">submit</a>
+          </li>
+        </ul>
+      </div>
+      <div class="body">
+        <ol>
+          <%Story.all.each.page(params[:page]) do |story| %>
+
+          <li>
+            <div class="votearrow" title="upvote"></div>
+            <div class="post">
+              <a href="<%=story.link%>"><%=story.title%></a>
+              <span class="row"><%=story.score%>
+                points by
+                <%=story.writer.email%>
+                <%=time_ago_in_words(story.created_at)%>
+                ago
+              </span>
+            </div>
+          </li>
+          <%end%>
+        </ol>
+      </div <div class="footer">
+    </div>
+  </div>
+</body>
+</html>
