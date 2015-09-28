@@ -1,79 +1,80 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<%= url('/main.css') %>" rel="stylesheet" type="text/css"/>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<%= url('/main.css') %>" rel="stylesheet" type="text/css"/>
+  <meta charset="utf-8">
+  <title></title>
+</head>
 
-  <body>
-    <div class="container">
-      <div class="nav navbar-default nav-header">
-        <span class="nav navbar-brand">Hacker News</span>
-        <ul class="nav navbar-nav">
-          <li>
-            <a href="#">welcome</a>
-          </li>
-          <li>
-            <a href="/new">new</a>
-          </li>
-          <li>
-            <a href="#">threads</a>
-          </li>
-          <li>
-            <a href="/newcomments">comments</a>
-          </li>
-          <li>
-            <a href="#">show</a>
-          </li>
-          <li>
-            <a href="#">ask</a>
-          </li>
-          <li>
-            <a href="#">jobs</a>
-          </li>
-          <li>
-            <a href="/submit">submit</a>
-          </li>
-        </ul>
-      </div>
-      <div class="body">
-
-          <%@stories_by_date.each_with_index do |story, index| %>
-          <p>
-            <span><%=index + 1 + @count%>.</span>
-            <div id="comment_list"  class="content">
-              <a href="<%=story.link%>">
-                <%=story.title%>
-              </a>
-              <span class="row">
-                <%=story.score%>
-                points by
-                <%=story.writer.email%>
-                <%=time_ago_in_words(story.created_at)%>
-                ago
-                <a href="comment?id=<%=story.id%>">discuss</a>
-              </span>
-              <%story.comments.each do |comment|%>
-              <p>
-                <%=comment.comment%>
-              </p>
-              <span>by
-                <%=comment.writer.email%>
-              </span>
-              </p>
-
-
-            <%end%>
-          </div>
-            <%end%>
-
-
-        <%= link_to_next_page @stories_by_date, 'More' %>
-      </div>
+<body>
+  <div class="container">
+    <div class="nav navbar-default nav-header">
+      <span class="nav navbar-brand">Hacker News</span>
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="#">welcome</a>
+        </li>
+        <li>
+          <a href="/new">new</a>
+        </li>
+        <li>
+          <a href="#">threads</a>
+        </li>
+        <li>
+          <a href="/newcomments">comments</a>
+        </li>
+        <li>
+          <a href="#">show</a>
+        </li>
+        <li>
+          <a href="#">ask</a>
+        </li>
+        <li>
+          <a href="#">jobs</a>
+        </li>
+        <li>
+          <a href="/submit">submit</a>
+        </li>
+      </ul>
     </div>
-  </body>
+    <div class="body">
+
+      <%@stories_by_date.each_with_index do |story, index| %>
+      <p>
+        <span><%=index + 1 + @count%>.</span>
+        <div id="comment_list"  class="content">
+            <a id="vote" href="/vote?for=<%=story.id%>"><div class="votearrow" title="upvote"></div></a>
+          <a href="<%=story.link%>">
+            <%=story.title%>
+          </a>
+          <span class="row">
+            <%=story.score%>
+            points by
+            <%=story.writer.email%>
+            <%=time_ago_in_words(story.created_at)%>
+            ago
+            <a href="comment?id=<%=story.id%>">discuss</a>
+          </p>
+        </span>
+        <div class="comment">
+        <%story.comments.each do |comment|%>
+        <span><%=comment.writer.email%>
+          <%=time_ago_in_words(comment.created_at)%>|
+          <a href="<%=comment.story.link%>">parent</a>|
+          on: <a href="<%=comment.story.link%>"><%=comment.story.title%></a>
+        </span>
+        <p>
+          <%=comment.comment%>
+        </p>
+        <%end%>
+      </div>
+      </div>
+      <%end%>
+      <%= link_to_next_page @stories_by_date, 'More' %>
+    </div>
+  </div>
+</body>
 
 </html>

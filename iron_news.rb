@@ -11,7 +11,8 @@ register Kaminari::Helpers::SinatraHelpers
 
 
 ActiveRecord::Base.establish_connection(
-"postgres://gsddktqobhibwr:ryhXYQkhnkYvYZiLxWqjf1rHee@ec2-54-163-228-188.compute-1.amazonaws.com:5432/d2f6h047gag27c"
+'adapter' => "sqlite3",
+'database' => "store.sqlite3"
 )
 
 
@@ -32,7 +33,7 @@ end
 
 class Comment < ActiveRecord::Base
   belongs_to :writer
-  belongs_to :Story
+  belongs_to :story
 end
 
 def pagination
@@ -88,6 +89,7 @@ post '/comment' do
   email = params['email']
   writer = Writer.find_or_create_by(name: name, email: email)
   writer.comments.create(comment: comment, story_id: story_id)
+  redirect back
 end
 
 get '/newcomments' do
@@ -101,5 +103,5 @@ get '/vote' do
   story = Story.find_by(id: story_id)
    votes = story.score + 1
    story.update(score: votes)
-   redirect '/new'
+   redirect back
 end

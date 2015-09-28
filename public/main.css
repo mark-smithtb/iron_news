@@ -36,8 +36,9 @@
 #comment_list {
   display: block;
   position: relative;
-  bottom: 2.5em;
+  bottom: 3.3em;
   left: 3em;
   margin-left: 1em;
   margin-top: 1em;
+  width: 70em;
 }
